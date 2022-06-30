@@ -5,9 +5,9 @@ using namespace std;
 int main() {
 	string str;
 	int cnt[4];
-	while(true){
+	while (true) {
 		fill_n(cnt, 4, 0);
-		getline(cin, str);	// °³Çà Àü±îÁö ÀÔ·Â¹Þ°í, °³ÇàÀº ¹ö¸°´Ù.
+		getline(cin, str);	// ê°œí–‰ ì „ê¹Œì§€ ìž…ë ¥ë°›ê³ , ê°œí–‰ì€ ë²„ë¦°ë‹¤.
 		if (str.size() == 0)	break;
 		for (char ch : str) {
 			if (ch >= 'a' && ch <= 'z') {
@@ -28,4 +28,5 @@ int main() {
 		}
 		cout << '\n';
 	}
+	return 0;
 }
