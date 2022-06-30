@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
 int main() {
@@ -13,4 +12,5 @@ int main() {
 	for (int i : cnt) {
 		cout << i << ' ';
 	}
+	return 0;
 }
