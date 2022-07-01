@@ -21,4 +21,4 @@ int main() {
 	cout << gcd(x, y) << '\n';
 	cout << lcm(x, y) << '\n';
 	return 0;
-}
+} 
