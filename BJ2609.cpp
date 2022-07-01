@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int gcd(int x, int y) {
+int gcd(int x, int y) {	// x와 y의 대소관계는 무의미
 	int mod = x % y;
 	while (mod != 0) {
 		x = y;
