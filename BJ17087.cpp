@@ -15,7 +15,7 @@ int gcd(int x, int y) {
 int main() {
 	int n, s;
 	cin >> n >> s;
-	vector<int> dis(n);	// ¼öºóÀÌ¿Í µ¿»ı °£ °Å¸®
+	vector<int> dis(n);	// ìˆ˜ë¹ˆì´ì™€ ë™ìƒ ê°„ ê±°ë¦¬
 	for (int i = 0; i < n; i++) {
 		int temp;
 		cin >> temp;
