@@ -2,7 +2,9 @@
 using namespace std;
 
 int solve(int n, int num) {
-	int div = num, cnt = 0;
+	// n이 자료형의 최대치에 근접하게 큰 수라면, 오버플로우 발생할 수 있다.
+	long long div = num;
+	int cnt = 0;
 	while (n / div != 0) {
 		cnt += n / div;
 		div *= num;
