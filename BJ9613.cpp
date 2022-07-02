@@ -4,12 +4,6 @@
 using namespace std;
 
 int gcd(int x, int y) {
-	if (x < y) {	// Ç×»ó x´Â yº¸´Ù ¿ìÀ§¿¡ ÀÖ´Ù.
-		int temp = x;
-		x = y;
-		y = temp;
-	}
-
 	int mod = x % y;
 	while (mod != 0) {
 		x = y;
@@ -25,7 +19,7 @@ int main() {
 		int n;
 		cin >> n;
 		vector<int> num(n);
-		long long sum = 0;	// nÀÌ 100ÀÌ°í 100°³ÀÇ ¼ö ÀüºÎ 100¸¸ÀÌ¶ó°í »ı°¢ÇÏ¸é, sumÀÌ 49.5¾ïÀÌ ³ª¿À¹Ç·Î int·Î´Â ºÒ°¡´ÉÇÏ´Ù. 
+		long long sum = 0;	// nì´ 100ì´ê³  100ê°œì˜ ìˆ˜ ì „ë¶€ 100ë§Œì´ë¼ê³  ìƒê°í•˜ë©´, sumì´ 49.5ì–µì´ ë‚˜ì˜¤ë¯€ë¡œ intë¡œëŠ” ë¶ˆê°€ëŠ¥í•˜ë‹¤. 
 		for (int i = 0; i < n; i++) {
 			cin >> num[i];
 		}
