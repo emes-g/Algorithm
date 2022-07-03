@@ -10,17 +10,17 @@ int main() {
 		return 0;
 	}
 	stack<int> s;
-	
+
 
 	while (n != 0) {
-		if (n < 0 && abs(n % -2) == 1) {	// 나머지가 음수가 나오는 유일한 경우
-			s.push(1);
-			n -= 1;
+		if (n < 0 && n % -2 != 0) {	// 나머지가 음수인 경우
+			s.push(n % -2 + 2);
+			n = (n - 2) / -2;
 		}
 		else {
 			s.push(n % -2);
+			n /= -2;
 		}
-		n /= -2;
 	}
 
 	while (!s.empty()) {
