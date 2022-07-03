@@ -22,7 +22,7 @@ int main() {
 			}
 		}
 	}
-	if (!start) {	// ÀÔ·ÂÀÌ 0ÀÎ °æ¿ì
+	if (!start) {	// ì…ë ¥ì´ 0ì¸ ê²½ìš°
 		cout << 0;
 	}
 	return 0;
