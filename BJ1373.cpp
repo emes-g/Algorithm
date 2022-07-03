@@ -2,37 +2,18 @@
 #include <string>
 using namespace std;
 
-// i가 커서 개념으로 존재
-// 어떻게든 해결에만 중점을 둔 풀이라는 느낌을 받아
-
 int main() {
 	string bin;
 	cin >> bin;
-	if (bin == "0") {
-		cout << 0;
-		return 0;
+	size_t size = bin.size();
+	if (size % 3 == 2) {
+		cout << 2 * (bin[0] - '0') + 1 * (bin[1] - '0');
 	}
-	size_t i = 0, size = bin.size();
-	if (size % 3 != 0) {
-		if (size % 3 == 1) {
-			cout << 1;
-			i = 1;
-		}
-		else {
-			if (bin[1] == '0') {
-				cout << 2;
-			}
-			else {
-				cout << 3;
-			}
-			i = 2;
-		}
+	else if (size % 3 == 1) {
+		cout << 1 * (bin[0] - '0');
 	}
-	for (; i < size; i += 3) {
-		int temp = (bin[i] == '1') ? 4 : 0;
-		temp += (bin[i + 1] == '1') ? 2 : 0;
-		temp += (bin[i + 2] == '1') ? 1 : 0;
-		cout << temp;
+	for (size_t i = size % 3; i < size; i += 3) {	// mod 연산으로 초기화함으로써 원하는 위치에서 시작
+		cout << 4 * (bin[i] - '0') + 2 * (bin[i + 1] - '0') + 1 * (bin[i + 2] - '0');
 	}
 	return 0;
 }
