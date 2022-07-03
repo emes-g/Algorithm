@@ -2,6 +2,9 @@
 #include <string>
 using namespace std;
 
+// i가 커서 개념으로 존재
+// 어떻게든 해결에만 중점을 둔 풀이라는 느낌을 받아
+
 int main() {
 	string bin;
 	cin >> bin;
