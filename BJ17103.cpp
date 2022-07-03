@@ -4,6 +4,7 @@ using namespace std;
 
 const int MAX = 1000000;
 vector<bool> check(MAX + 1, true);
+vector<int> prime;
 
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -12,9 +13,10 @@ int main() {
 	int t;
 	cin >> t;
 
-	for (int i = 2; i * i <= MAX; i++) {
+	for (int i = 2; i <= MAX; i++) {	// 기존 에라토스테네스의 체와 다른 범위
 		if (check[i]) {
-			for (int j = i * i; j <= MAX; j += i) {
+			prime.push_back(i);
+			for (int j = i * 2; j <= MAX; j += i) {
 				check[j] = false;
 			}
 		}
@@ -23,12 +25,17 @@ int main() {
 	while (t--) {
 		int n, cnt = 0;
 		cin >> n;
-		for (size_t i = 2; i <= n / 2; i++) {
-			if (check[i] && check[n - i]) {
-				cnt++;
+		for (int i = 0; i < prime.size(); i++) {
+			if (prime[i] <= n / 2) {
+				if (check[n - prime[i]]) {
+					cnt++;
+				}
+			}
+			else {
+				break;
 			}
 		}
 		cout << cnt << '\n';
 	}
 	return 0;
-} 
+}
