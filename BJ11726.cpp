@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
 const int MOD = 10007;
+
+// dp[n] : 2*n 크기의 직사각형을 채우는 방법의 수를 10007로 나눈 나머지
+
 int main() {
 	int n;
 	cin >> n;
