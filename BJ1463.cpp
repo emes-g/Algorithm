@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+// dp[n] : 정수 n을 만들기 위해 사용하는 연산의 최소 횟수
+
 int main() {
 	int n;
 	cin >> n;
