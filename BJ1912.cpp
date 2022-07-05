@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+// dp[n] : a[n]을 포함하는 최대 연속합
+
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
