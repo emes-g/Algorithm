@@ -4,6 +4,9 @@ const int MAX = 100000;
 const int MOD = 1000000009;
 int dp[MAX + 1][4];
 
+// dp[n][i] : 정수 n을 만드는 방법의 수를 MOD로 나눈 나머지
+// (단, 마지막에는 반드시 i를 더한다)
+
 void init() {
 	for (int i = 1; i < 4; i++) {
 		fill_n(dp[i], 4, 0);
@@ -26,7 +29,7 @@ int main() {
 	int t;
 	cin >> t;
 	while (t--) {
-		long long n, ans = 0;
+		int n, ans = 0;
 		cin >> n;
 		for (int i = 1; i <= 3; i++) {
 			ans += dp[n][i];
