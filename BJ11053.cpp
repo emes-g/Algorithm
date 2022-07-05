@@ -10,7 +10,7 @@ int main() {
 
 	int n, ans = 0;
 	cin >> n;
-	vector<int> a(n), dp(n, 1);
+	vector<int> a(n), dp(n, 1);	// 자기 자신만을 포함하고 있어도 길이가 1인 LIS이기 때문이다.
 	for (int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
