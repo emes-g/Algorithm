@@ -8,6 +8,10 @@ using namespace std;
 // k : 1 -> 아래 스티커 선택
 // k : 2 -> 해당 열에서 스티커 선택 X
 
+// <기존과 달라진 점>
+// 어차피 스티커 배열은 일회용으로 사용할 것이기 때문에 
+// 애초에 값을 dp 배열에 저장해 놓음으로써, 메모리적 이득을 취했다.
+
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -17,19 +21,17 @@ int main() {
 	while (t--) {
 		int n, ans = 0;
 		cin >> n;
-		vector<vector<int>> sticker(2, vector<int>(n)), dp(3, vector<int>(n));
+		vector<vector<int>> dp(3, vector<int>(n));
 		for (int i = 0; i < n; i++) {
-			cin >> sticker[0][i];
+			cin >> dp[0][i];
 		}
 		for (int i = 0; i < n; i++) {
-			cin >> sticker[1][i];
+			cin >> dp[1][i];
 		}
 
-		dp[0][0] = sticker[0][0];
-		dp[1][0] = sticker[1][0];
 		for (size_t i = 1; i < n; i++) {
-			dp[0][i] = max(dp[1][i - 1], dp[2][i - 1]) + sticker[0][i];
-			dp[1][i] = max(dp[0][i - 1], dp[2][i - 1]) + sticker[1][i];
+			dp[0][i] += max(dp[1][i - 1], dp[2][i - 1]);
+			dp[1][i] += max(dp[0][i - 1], dp[2][i - 1]);
 			dp[2][i] = max(max(dp[0][i - 1], dp[1][i - 1]), dp[2][i - 1]);
 		}
 
