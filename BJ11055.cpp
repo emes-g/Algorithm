@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// dp[n] : a[n]을 포함하는 증가하는 부분 수열의 합
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	int n, ans = 0;
+	cin >> n;
+	vector<int> a(n), dp(n);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+		dp[i] = a[i];
+	}
+
+	for (int i = 1; i < n; i++) {
+		for (int j = i - 1; j >= 0; j--) {
+			if (a[i] > a[j]) {
+				dp[i] = max(dp[i], dp[j] + a[i]);
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		if (ans < dp[i]) {
+			ans = dp[i];
+		}
+	}
+	cout << ans;
+	return 0;
+}
