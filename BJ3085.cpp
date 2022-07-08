@@ -4,6 +4,9 @@
 using namespace std;
 char color[4] = { 'C', 'P', 'Z', 'Y' };
 
+// 시간복잡도 : O(N^3)
+// 범위 : 3 ≤ N ≤ 50
+
 int checkRow(vector<vector<char>>& board, int n, int row) {
 	int res = 0;
 	
@@ -68,13 +71,13 @@ int main() {
 				ans = max(ans, checkCol(board, n, j));
 				swap(board[i][j], board[i + 1][j]);
 			}
-			if (board[i][j + 1] != '0') {	// 왼쪽과 비교
+			if (board[i][j - 1] != '0') {	// 왼쪽과 비교
 				swap(board[i][j], board[i][j - 1]);
 				ans = max(ans, checkRow(board, n, i));
 				ans = max(ans, checkCol(board, n, j));
 				swap(board[i][j], board[i][j - 1]);
 			}
-			if (board[i + 1][j] != '0') {	// 위와 비교
+			if (board[i - 1][j] != '0') {	// 위와 비교
 				swap(board[i][j], board[i - 1][j]);
 				ans = max(ans, checkRow(board, n, i));
 				ans = max(ans, checkCol(board, n, j));
