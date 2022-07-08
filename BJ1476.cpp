@@ -2,13 +2,14 @@
 using namespace std;
 
 int main() {
-	int e, s, m;
-	cin >> e >> s >> m;
+	int E, S, M;
+	cin >> E >> S >> M;
 
 	for (int i = 1; i <= 7980; i++) {
-		if ((i % 15 == e || i % 15 + 15 == e) && 
-			(i % 28 == s || i % 28 + 28 == s) && 
-			(i % 19 == m || i % 19 + 19 == m)) {
+		int e = (i % 15 == 0) ? 15 : i % 15;
+		int s = (i % 28 == 0) ? 28 : i % 28;
+		int m = (i % 19 == 0) ? 19 : i % 19;
+		if (e == E && s == S && m == M) {
 			cout << i;
 			return 0;
 		}
