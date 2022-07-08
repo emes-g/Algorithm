@@ -41,6 +41,7 @@ int checkCol(vector<vector<char>>& board, int n, int col) {
 }
 
 int main() {
+	// 1. input
 	int n, ans = 0;
 	cin >> n;
 	vector<vector<char>> board(n + 2, vector<char>(n + 2, '0'));	// char board[n+2][n+2]
@@ -52,6 +53,7 @@ int main() {
 		}
 	}
 	
+	// 2. solve (brute force)
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= n; j++) {
 			if (board[i][j + 1] != '0') {	// 오른쪽과 비교
@@ -84,6 +86,8 @@ int main() {
 			}
 		}
 	}
+
+	// 3. output
 	cout << ans;
 	return 0;
 }
