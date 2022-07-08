@@ -4,7 +4,7 @@
 using namespace std;
 char color[4] = { 'C', 'P', 'Z', 'Y' };
 
-// 시간복잡도 : O(N^3)
+// 시간복잡도 : O(N^4)
 // 범위 : 3 ≤ N ≤ 50
 
 int checkRow(vector<vector<char>>& board, int n, int row) {
