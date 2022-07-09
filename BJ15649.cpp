@@ -4,7 +4,7 @@ using namespace std;
 bool check[9];
 vector<int> num;
 
-// 시간복잡도 : O(N^M)
+// 시간복잡도 : O(N!)
 
 void BT(int n, int m, int level) {
 	if (level == m + 1) {
