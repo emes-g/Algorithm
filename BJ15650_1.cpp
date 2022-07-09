@@ -28,4 +28,4 @@ int main() {
 	cin >> n >> m;
 	BT(1, 1, n, m);
 	return 0;
-}
+} 
