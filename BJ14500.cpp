@@ -4,6 +4,9 @@
 using namespace std;
 vector<pair<int, int>> make_part();
 
+// 시간복잡도 O(19*N*M)
+// 시간복잡도를 먼저 구해서, 브루트 포스로 가능할지 판단하고 진행한다.
+
 // pair<int, int>[19] part
 // 공통되지 않은 부분의 인덱스를 가리킨다.
 // 해당 부분이 중심 블록에서 얼마만큼 떨어져 있는지를 나타낸다.
