@@ -1,61 +1,54 @@
 #include <iostream>
 #include <string>
 using namespace std;
-const int IMPOSSIBLE = 1000000;
+const int MAX = 1000000;
+bool btn[10];
+
+int detectFault(int x) {
+	string temp = to_string(x);
+	for (int j = 0; j < temp.size(); j++) {
+		if (!btn[temp[j] - '0']) {	// char to int
+			return -1;
+		}
+	}
+	return temp.size();
+}
 
 int main() {
 	// 1. input
-	int n, m, ans = IMPOSSIBLE;
+	int n, m;
 	cin >> n >> m;
-	bool btn[10];
 	fill_n(btn, 10, true);
-	while (m--) {
+	while(m--){
 		int num;
 		cin >> num;
 		btn[num] = false;
 	}
 
 	// 2. solve (brute force)
-	int num[3], click[3];
-	fill_n(num, 2, IMPOSSIBLE);
-	num[2] = 100;
-	for (int i = n; i >= 0; i--) {	// get num[0]
-		int temp = i;
-		while (temp != 0) {
-			if (btn[temp % 10]) {
-				temp /= 10;
-			}
-			else {
-				break;
-			}
-		}
-		if (temp == 0 && btn[0]) {
+	int num[3] = { MAX, MAX, 100 };
+	int size[3] = { 7, 7, 0 };
+	for (int i = n; i <= MAX; i++) {
+		int temp = detectFault(i);
+		if (temp != -1) {
 			num[0] = i;
+			size[0] = temp;
 			break;
 		}
 	}
-	for (int i = n; i <= IMPOSSIBLE; i++) {	// get num[1]
-		int temp = i;
-		while (temp != 0) {
-			if (btn[temp % 10]) {
-				temp /= 10;
-			}
-			else {
-				break;
-			}
-		}
-		if (temp == 0 && btn[0]) {
+	for (int i = n; i >= 0; i--) {
+		int temp = detectFault(i);
+		if (temp != -1) {
 			num[1] = i;
+			size[1] = temp;
 			break;
 		}
 	}
 
 	// 3. output
-	click[0] = to_string(num[0]).size() + abs(num[0] - n);
-	click[1] = to_string(num[1]).size() + abs(num[1] - n);
-	click[2] = abs(num[2] - n);
+	int ans = MAX;
 	for (int i = 0; i < 3; i++) {
-		ans = min(ans, click[i]);
+		ans = min(ans, abs(num[i] - n) + size[i]);
 	}
 	cout << ans;
 	return 0;
