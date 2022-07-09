@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-bool check[9];
 int num[9], input[9];
 
 void BT(int level, int index, int n, int m) {
