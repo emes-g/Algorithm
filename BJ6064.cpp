@@ -7,6 +7,8 @@ using namespace std;
 // <주의 사항>
 // 나머지가 0일 때 예외 처리가 필요하다.
 
+// 시간복잡도 : O(N)
+
 int main() {
 	int t;
 	cin >> t;
