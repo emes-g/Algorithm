@@ -2,6 +2,8 @@
 using namespace std;
 int a[10000];
 
+// 시간복잡도 : O(N)
+
 bool next_permutation(int n) {
 	// 1. 내림차순을 만족하지 못하는 수 a[i-1]을 찾는다.
 	for (int i = n - 1; i >= 1; i--) {
