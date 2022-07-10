@@ -2,6 +2,8 @@
 using namespace std;
 int a[12], num[6];
 
+// 시간복잡도 : O(2^k)
+
 void BT(int level, int index, int k) {
 	if (level == 6) {
 		for (int i = 0; i < 6; i++) {
