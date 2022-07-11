@@ -41,36 +41,27 @@ void go(int level, int n) {
 		ok = true;
 		return;
 	}
-
-	if (s[level][level] == '0') {
-		a[level] = 0;
+	int start, end;
+	switch (s[level][level]) {
+	case '+':
+		start = 1;
+		end = 10;
+		break;
+	case '-':
+		start = -10;
+		end = -1;
+		break;
+	default:
+		start = end = 0;
+		break;
+	}
+	for (int i = start; i <= end; i++) {
+		a[level] = i;
 		if (check(level)) {
 			go(level + 1, n);
-			if (ok) {
-				return;
-			}
 		}
-	}
-	else if (s[level][level] == '+') {
-		for (int i = 1; i <= 10; i++) {
-			a[level] = i;
-			if (check(level)) {
-				go(level + 1, n);
-			}
-			if (ok) {
-				return;
-			}
-		}
-	}
-	else {
-		for (int i = -1; i >= -10; i--) {
-			a[level] = i;
-			if (check(level)) {
-				go(level + 1, n);
-			}
-			if (ok) {
-				return;
-			}
+		if (ok) {
+			return;
 		}
 	}
 }
