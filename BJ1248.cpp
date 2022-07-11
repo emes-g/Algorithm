@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-char s[10][10], sign[10];
+char s[10][10];
 int a[10];
 bool ok;
 
@@ -74,9 +74,6 @@ int main() {
 		for (int j = i; j < n; j++) {
 			s[i][j] = str[idx++];
 		}
-	}
-	for (int i = 0; i < n; i++) {
-		sign[i] = s[i][i];
 	}
 	go(0, n);
 	return 0;
