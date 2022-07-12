@@ -1,104 +1,46 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
 using namespace std;
+vector<string> ans;
 char c[9];
-bool ok, check[10];
-int a[10];
+bool check[10];
 
-// 백트래킹
+// <기존과 달라진 점>
+// + : 중복되는 코드를 제거하여 코드가 간결해짐.
 
-void init() {
-	ok = false;
-	fill_n(check, 10, false);
-}
+// - : 메모리와 시간이 추가로 필요하다.
+// 기존 : 2020KB/8ms
+// 신규 : 3576KB/8ms
+// 왜?
+// min, max만을 찾고 끝내던 기존과는 달리, 답 후보를 전부 찾고 min과 max만을 출력하기 때문이다.
 
-void go(int level, int prev, int k, bool maximum) {
-	if (level == 0) {
-		if (maximum) {
-			for (int i = 9; i >= 0; i--) {
-				check[i] = true;
-				a[level] = i;
-				go(1, i, k, true);
-				check[i] = false;
-				if (ok) {
-					return;
-				}
-			}
+bool good(char prev, char cur, char sign) {
+	if (sign == '<') {
+		if (prev > cur) {
+			return false;
 		}
-		else {
-			for (int i = 0; i < 10; i++) {
-				check[i] = true;
-				a[level] = i;
-				go(1, i, k, false);
-				check[i] = false;
-				if (ok) {
-					return;
-				}
-			}
-		}
-	}
-	else if (level == k + 1) {
-		for (int i = 0; i < k + 1; i++) {
-			cout << a[i];
-		}
-		cout << '\n';
-		ok = true;
-		return;
 	}
 	else {
-		if (maximum) {
-			if (c[level - 1] == '<') {
-				for (int i = 9; i > prev; i--) {
-					if (!check[i]) {
-						check[i] = true;
-						a[level] = i;
-						go(level + 1, i, k, maximum);
-						check[i] = false;
-						if (ok) {
-							return;
-						}
-					}
-				}
-			}
-			else {
-				for (int i = prev - 1; i >= 0; i--) {
-					if (!check[i]) {
-						check[i] = true;
-						a[level] = i;
-						go(level + 1, i, k, maximum);
-						check[i] = false;
-						if (ok) {
-							return;
-						}
-					}
-				}
-			}
+		if (prev < cur) {
+			return false;
 		}
-		else {
-			if (c[level - 1] == '<') {
-				for (int i = prev + 1; i < 10; i++) {
-					if (!check[i]) {
-						check[i] = true;
-						a[level] = i;
-						go(level + 1, i, k, maximum);
-						check[i] = false;
-						if (ok) {
-							return;
-						}
-					}
-				}
-			}
-			else {
-				for (int i = 0; i < prev; i++) {
-					if (!check[i]) {
-						check[i] = true;
-						a[level] = i;
-						go(level + 1, i, k, maximum);
-						check[i] = false;
-						if (ok) {
-							return;
-						}
-					}
-				}
+	}
+	return true;
+}
+
+void go(int level, string substr, int k) {
+	if (level == k + 1) {
+		ans.push_back(substr);
+		return;
+	}
+	for (int i = 0; i <= 9; i++) {
+		if (!check[i]) {
+			if (level == 0 || good(substr[level - 1], i + '0', c[level - 1])) {
+				check[i] = true;
+				go(level + 1, substr + to_string(i), k);
+				check[i] = false;
 			}
 		}
 	}
@@ -110,8 +52,11 @@ int main() {
 	for (int i = 0; i < k; i++) {
 		cin >> c[i];
 	}
-	go(0, 0, k, true);
-	init();
-	go(0, 0, k, false);
+
+	go(0, "", k);
+
+	sort(ans.begin(), ans.end());
+	cout << ans[ans.size() - 1] << '\n';
+	cout << ans[0] << '\n';
 	return 0;
 }
