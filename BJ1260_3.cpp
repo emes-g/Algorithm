@@ -71,4 +71,4 @@ int main() {
 	init();
 	bfs(v, n);
 	return 0;
-}
+} 
