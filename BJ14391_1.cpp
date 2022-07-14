@@ -15,12 +15,12 @@ int main() {
 	}
 
 	// 2. solve (bitmask)
-	for (int sub = 0; sub < (1 << n * m); sub++) {
+	for (int sub = 0; sub < (1 << n * m); sub++) {	// 가능한 모든 경우에 대해서
 		int sum = 0;
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {	// 모든 행에 대해서
 			int cur = 0;
-			for (int j = 0; j < m; j++) {
-				if ((sub & (1 << i * m + j)) == 0) {
+			for (int j = 0; j < m; j++) {	// 해당 행의 모든 칸에 대해서
+				if ((sub & (1 << i * m + j)) == 0) {	// 해당 칸이 가로면
 					cur = cur * 10 + s[i][j];
 				}
 				else {
@@ -31,10 +31,10 @@ int main() {
 			sum += cur;
 		}
 
-		for (int i = 0; i < m; i++) {
+		for (int i = 0; i < m; i++) {	// 모든 열에 대해서
 			int cur = 0;
-			for (int j = 0; j < n; j++) {
-				if ((sub & (1 << j * m + i)) != 0) {
+			for (int j = 0; j < n; j++) {	// 해당 열의 모든 칸에 대해서
+				if ((sub & (1 << j * m + i)) != 0) {	// 해당 칸이 세로면
 					cur = cur * 10 + s[j][i];
 				}
 				else {
