@@ -42,7 +42,7 @@ int main() {
 	}
 
 	// 2. solve (bfs)
-	bfs({ 0,0 }, n, m);
+	bfs({ 0, 0 }, n, m);
 
 	// 3. output
 	cout << dis[n - 1][m - 1];
