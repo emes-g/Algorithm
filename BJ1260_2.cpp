@@ -18,7 +18,6 @@ void dfs(int node, int n) {	// 재귀
 	for (int i = 0; i < a[node].size(); i++) {
 		int next = a[node][i];
 		if (!check[next]) {
-			check[next] = true;
 			dfs(next, n);
 		}
 	}
