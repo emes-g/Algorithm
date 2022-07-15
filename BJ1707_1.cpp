@@ -5,9 +5,14 @@ using namespace std;
 vector<int> a[20001];
 int color[20001];
 
+// vector<int>::clear()
+// vector에 저장된 값들은 제거되지만,
+// vector에 할당된 메모리는 삭제되지 않는다.
+
 void init(int v) {
 	for (int i = 1; i <= v; i++) {
 		a[i].clear();
+		vector<int>().swap(a[i]);	// 메모리 정리
 		color[i] = 0;
 	}
 }
