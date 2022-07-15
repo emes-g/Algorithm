@@ -39,18 +39,18 @@ int bfs(int n, int m) {
 	}
 
 	// 3. 토마토가 모두 익지 못하는 상황을 검사한다.
-	int cnt = 0;
+	int ans = 0;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
 			if (a[i][j] == 0) {
 				return -1;
 			}
 			else {
-				cnt = max(cnt, dis[i][j]);
+				ans = max(ans, dis[i][j]);
 			}
 		}
 	}
-	return cnt;
+	return ans;
 }
 
 int main() {
