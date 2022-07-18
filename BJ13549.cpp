@@ -2,7 +2,7 @@
 #include <queue>
 using namespace std;
 const int MAX = 200000;
-int dist[200000];
+int dist[MAX];
 
 void bfs(int x, int k) {
 	queue<int> q;
