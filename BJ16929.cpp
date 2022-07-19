@@ -9,10 +9,9 @@ pair<int, int> k[4]{
 
 // <격자 형식의 사이클 찾기 문제>
 // 기존 dfs의 cycle detection과는 확실한 차이가 있다.
-// ex) 9466, 16724
 
 bool dfs(pair<int, int> cur, pair<int, int> prev, int n, int m) {
-	if (check[cur.first][cur.second]) {	// 
+	if (check[cur.first][cur.second]) {
 		return true;
 	}
 	check[cur.first][cur.second] = true;
