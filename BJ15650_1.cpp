@@ -1,31 +1,26 @@
 #include <iostream>
 using namespace std;
-bool check[9];
-int num[9];
+int a[8];
 
 // 시간복잡도 : O(N!) (순서 문제)
+// start가 있으므로 check가 필요하지 않음.
 
-void BT(int level, int start, int n, int m) {
-	if (level == m + 1) {
-		for (int i = 1; i <= m; i++) {
-			cout << num[i] << ' ';
+void go(int level, int start, int n, int m) {
+	if (level == m) {
+		for (int i = 0; i < m; i++) {
+			cout << a[i] << ' ';
 		}
 		cout << '\n';
 		return;
 	}
 	for (int i = start; i <= n; i++) {
-		if (!check[i]) {
-			check[i] = true;
-			num[level] = i;
-			BT(level + 1, i + 1, n, m);
-			check[i] = false;
-		}
+		a[level] = i;
+		go(level + 1, i + 1, n, m);
 	}
 }
 
 int main() {
 	int n, m;
 	cin >> n >> m;
-	BT(1, 1, n, m);
-	return 0;
-} 
+	go(0, 1, n, m);
+}
