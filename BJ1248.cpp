@@ -4,24 +4,24 @@ char s[10][10];
 int a[10];
 bool ok;
 
+char getSign(int sum) {
+	if (sum > 0) {
+		return '+';
+	}
+	else if (sum < 0) {
+		return '-';
+	}
+	else {
+		return '0';
+	}
+}
+
 bool good(int level) {
 	int sum = 0;
 	for (int i = level; i >= 0; i--) {
 		sum += a[i];
-		if (s[i][level] == '-') {
-			if (sum >= 0) {
-				return false;
-			}
-		}
-		else if (s[i][level] == '+') {
-			if (sum <= 0) {
-				return false;
-			}
-		}
-		else {
-			if (sum != 0) {
-				return false;
-			}
+		if (s[i][level] != getSign(sum)) {
+			return false;
 		}
 	}
 	return true;
@@ -57,7 +57,7 @@ int main() {
 			s[i][j] = str[idx++];
 		}
 	}
-	
+
 	// 2. solve (brute force)
 	go(0, n);
 }
