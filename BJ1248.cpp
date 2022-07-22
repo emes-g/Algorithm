@@ -1,32 +1,27 @@
 #include <iostream>
-#include <string>
 using namespace std;
 char s[10][10];
 int a[10];
 bool ok;
 
-// 백트래킹
-
-char getSign(int sum) {
-	if (sum > 0) {
-		return '+';
-	}
-	else if (sum < 0) {
-		return '-';
-	}
-	else {
-		return '0';
-	}
-}
-
-bool check(int level) {
-	for (int i = 0; i < level; i++) {
-		int sum = 0;
-		for (int j = i; j <= level; j++) {
-			sum += a[j];
+bool good(int level) {
+	int sum = 0;
+	for (int i = level; i >= 0; i--) {
+		sum += a[i];
+		if (s[i][level] == '-') {
+			if (sum >= 0) {
+				return false;
+			}
 		}
-		if (s[i][level] != getSign(sum)) {
-			return false;
+		else if (s[i][level] == '+') {
+			if (sum <= 0) {
+				return false;
+			}
+		}
+		else {
+			if (sum != 0) {
+				return false;
+			}
 		}
 	}
 	return true;
@@ -41,23 +36,9 @@ void go(int level, int n) {
 		ok = true;
 		return;
 	}
-	int start, end;
-	switch (s[level][level]) {
-	case '+':
-		start = 1;
-		end = 10;
-		break;
-	case '-':
-		start = -10;
-		end = -1;
-		break;
-	default:
-		start = end = 0;
-		break;
-	}
-	for (int i = start; i <= end; i++) {
+	for (int i = -10; i <= 10; i++) {
 		a[level] = i;
-		if (check(level)) {
+		if (good(level)) {
 			go(level + 1, n);
 		}
 		if (ok) {
@@ -67,6 +48,7 @@ void go(int level, int n) {
 }
 
 int main() {
+	// 1. input
 	int n, idx = 0;
 	string str;
 	cin >> n >> str;
@@ -75,6 +57,7 @@ int main() {
 			s[i][j] = str[idx++];
 		}
 	}
+	
+	// 2. solve (brute force)
 	go(0, n);
-	return 0;
 }
