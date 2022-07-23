@@ -9,16 +9,16 @@ vector<int> op;
 
 int calc(int res, int num, int op) {
 	switch (op) {
-	case 0:		// +
+	case 0:
 		res += num;
 		break;
-	case 1:		// -
+	case 1:
 		res -= num;
 		break;
-	case 2:		// *
+	case 2:
 		res *= num;
 		break;
-	case 3:		// /
+	case 3:
 		res /= num;
 		break;
 	}
