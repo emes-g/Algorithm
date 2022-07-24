@@ -5,8 +5,8 @@ int n, k, ans;
 bool check[26];
 vector<string> word;
 
-void init() {
-	char temp[5] = {'a','n','t','i','c'};
+void init() {	// 사전 설정
+	char temp[5] = { 'a','n','t','i','c' };
 	for (char ch : temp) {
 		check[ch - 'a'] = true;
 	}
@@ -36,7 +36,7 @@ void go(int level, int index) {
 	else if (index >= 26) {
 		return;
 	}
-	else if (index == 0 || index == 2 || index == 8 || index == 13 || index == 19) {
+	else if (check[index]) {	// a, n, t, i, c (사전 설정)
 		index++;
 	}
 	check[index] = true;
