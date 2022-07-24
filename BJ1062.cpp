@@ -5,6 +5,12 @@ int n, k, ans;
 bool check[26];
 vector<string> word;
 
+// 예상 시간복잡도 : O(2^21 * 50 * 7)
+// ∵ 21개의 숫자 선택, 단어 50개, 단어 15글자
+
+// 2024kb/368ms
+// 왜 예상 시간보다 훨씬 빠를까?
+
 void init() {	// 사전 설정
 	char temp[5] = { 'a','n','t','i','c' };
 	for (char ch : temp) {
