@@ -9,9 +9,16 @@ int ans = 11;
 // <삼성 SW 역량 테스트 기출 문제>
 // 최적의 알고리즘이라고 할 수는 없지만,
 // 답 안 보고 혼자서 원트에 구현해낸 게 만족스럽다.
+// 시간 복잡도 : O(4^10 + α)
 // 2020kb/72ms
 
-void go(int level, int x1, int y1, int x2, int y2) {
+// <수정 사항>
+// 이전에 상하 이동했으면 이번에는 좌우 이동만,
+// 이전에 좌우 이동했으면 이번에는 상하 이동만 하면 된다.
+// 시간 복잡도 : O(4 * 2^9 + α)
+// 2020kb/0ms
+
+void go(int level, int x1, int y1, int x2, int y2, int prev) {
 	if (level == 11) {	// 10번 초과 (실패)
 		return;
 	}
@@ -22,7 +29,18 @@ void go(int level, int x1, int y1, int x2, int y2) {
 		ans = min(ans, level);
 		return;
 	}
-	for (int i = 0; i < 4; i++) {
+	int start = 0, end = 4;
+	if (level != 0) {
+		if (prev < 2) {
+			start = 2;
+			end = 4;
+		}
+		else {
+			start = 0;
+			end = 2;
+		}
+	}
+	for (int i = start; i < end; i++) {
 		int nx1 = x1;
 		int ny1 = y1;
 		while (a[nx1 + dx[i]][ny1 + dy[i]] != '#') {	// 빨간 구슬 이동
@@ -42,7 +60,7 @@ void go(int level, int x1, int y1, int x2, int y2) {
 			}
 		}
 		if (nx1 == nx2 && ny1 == ny2 && a[nx1][ny1] != 'O') {	// 구슬 위치가 겹친 경우
-			if (i == 0) {	// 上
+			if (i == 0) {	// up
 				if (x1 < x2) {
 					nx2++;
 				}
@@ -50,7 +68,7 @@ void go(int level, int x1, int y1, int x2, int y2) {
 					nx1++;
 				}
 			}
-			else if (i == 1) {	// 下
+			else if (i == 1) {	// down
 				if (x1 < x2) {
 					nx1--;
 				}
@@ -58,7 +76,7 @@ void go(int level, int x1, int y1, int x2, int y2) {
 					nx2--;
 				}
 			}
-			else if (i == 2) {	// 左
+			else if (i == 2) {	// left
 				if (y1 < y2) {
 					ny2++;
 				}
@@ -66,7 +84,7 @@ void go(int level, int x1, int y1, int x2, int y2) {
 					ny1++;
 				}
 			}
-			else {	// 右
+			else {	// right
 				if (y1 < y2) {
 					ny1--;
 				}
@@ -75,7 +93,7 @@ void go(int level, int x1, int y1, int x2, int y2) {
 				}
 			}
 		}
-		go(level + 1, nx1, ny1, nx2, ny2);
+		go(level + 1, nx1, ny1, nx2, ny2, i);
 	}
 }
 
@@ -101,6 +119,6 @@ int main() {
 	}
 
 	// 2. solve (brute force)
-	go(0, x1, y1, x2, y2);
+	go(0, x1, y1, x2, y2, 0);
 	cout << (ans == 11 ? -1 : ans);
 }
