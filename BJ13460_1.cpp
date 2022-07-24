@@ -30,7 +30,7 @@ void go(int level, int x1, int y1, int x2, int y2, int prev) {
 		return;
 	}
 	int start = 0, end = 4;
-	if (level != 0) {
+	if (level != 0) {	// 이전 이동 방향에 따라 현재 이동 방향 결정
 		if (prev < 2) {
 			start = 2;
 			end = 4;
