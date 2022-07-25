@@ -11,6 +11,8 @@ int n, ans;
 // 16 8 2  0		16 8 2  0		16 16 0  0		16 0  0  0
 // 2  8 2  0		2  8 0  0		2  0  0  0		2  0  0  0
 
+// 예상 시간복잡도 : O(4^5 * N^2 + α)
+
 void push(vector<vector<int>>& temp, int dir) {
 	queue<int> q;
 	switch (dir) {
