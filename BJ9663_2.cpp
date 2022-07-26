@@ -36,4 +36,4 @@ int main() {
 	cin >> n;
 	go(0);
 	cout << ans;
-}
+} 
