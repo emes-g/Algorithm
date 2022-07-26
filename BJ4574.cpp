@@ -66,9 +66,9 @@ void go(int x, int y) {
 					int ny = y + dy[k];
 					if (nx >= 0 && nx < 9 && ny >= 0 && ny < 9) {
 						if (!a[nx][ny]) {
-							for (int i = 1; i < 10; i++) {
-								if (good(nx, ny, i)) {
-									a[nx][ny] = i;
+							for (int j = 1; j < 10; j++) {
+								if (good(nx, ny, j)) {
+									a[nx][ny] = j;
 									if (check[a[x][y]][a[nx][ny]]) {	// 사용한 pair라면
 										a[nx][ny] = 0;
 										continue;
