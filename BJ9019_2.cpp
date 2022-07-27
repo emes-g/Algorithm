@@ -6,7 +6,7 @@ const int MAX = 10000;
 int dist[MAX], from[MAX];
 char op[MAX];
 
-// 경로를 출력하는 역추적 문제
+// 경로를 출력하는 역추적 문제 (2112KB/1708MS)
 // 유사 : 숨바꼭질 4 (13913)
 
 // dist[i] : 해당 숫자를 표현하기 위한 최소 횟수
