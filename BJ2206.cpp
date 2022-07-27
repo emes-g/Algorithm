@@ -55,9 +55,10 @@ int main() {
 	bfs(down, 0, 0);
 	bfs(up, n - 1, m - 1);
 	int ans = MAX;
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {	// 벽을 부수는 경우
 		for (int j = 0; j < m; j++) {
 			if (a[i][j]) {
+				// 상 → 하우, 좌 → 하우
 				for (int k = 0; k < 4; k += 2) {
 					int nx = i + dx[k];
 					int ny = j + dy[k];
@@ -75,7 +76,7 @@ int main() {
 			}
 		}
 	}
-	ans = min(ans, down[n - 1][m - 1]);
+	ans = min(ans, down[n - 1][m - 1]);	// 벽을 안 부수는 경우
 
 	// 3. output
 	cout << (ans == MAX ? -1 : ans);
