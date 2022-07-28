@@ -2,11 +2,9 @@
 #include <vector>
 using namespace std;
 const int MAX = 1000;
-bool check[MAX][MAX];
-int a[MAX][MAX], g[MAX][MAX];
+bool a[MAX][MAX], check[MAX][MAX];
+int n, m, g[MAX][MAX];
 vector<int> area;
-
-int n, m;
 int dx[4] = { -1,1,0,0 };
 int dy[4] = { 0,0,-1,1 };
 
@@ -55,7 +53,7 @@ int main() {
 		cin >> str;
 		for (int j = 0; j < m; j++) {
 			if (str[j] - '0') {
-				a[i][j] = 1;
+				a[i][j] = true;
 			}
 		}
 	}
