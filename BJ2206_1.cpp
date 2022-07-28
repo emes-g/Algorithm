@@ -9,6 +9,7 @@ int dx[4] = { -1,1,0,0 };
 int dy[4] = { 0,0,-1,1 };
 
 // 12740KB/60MS
+// 유사 : 연속합2 (13398)
 
 void bfs(vector<vector<int>>& vec, int x, int y) {
 	memset(check, false, sizeof(check));
