@@ -1,70 +1,42 @@
 #include <iostream>
 #include <queue>
+#include <tuple>
 using namespace std;
-char a[8][8], check[8][8];
-int dx[8] = { -1,1,0,0,-1,-1,1,1 };
-int dy[8] = { 0,0,-1,1,-1,1,-1,1 };
-struct node {
-	int x, y, obj;
-	node(int x, int y, int obj)
-		:x(x), y(y), obj(obj) {}
-};
+char a[8][8], check[8][8][9];
+int dx[9] = { -1,1,0,0,-1,-1,1,1,0 };
+int dy[9] = { 0,0,-1,1,-1,1,-1,1,0 };
 
-bool bfs(int wall) {
-	queue<node> q;
-	q.push(node(7, 0, 0));
-	if (!wall) {
-		check[7][0] = true;
-	}
-	for (int i = 7; i >= 0; i--) {
-		for (int j = 0; j < 8; j++) {
-			if (a[i][j] == '#') {
-				q.push(node(i, j, 1));
-			}
-		}
-	}
+// <핵심>
+// 1. 8초 후에 모든 벽은 사라진다.
+// 2. 같은 위치에 있더라도, 존재한 시간이 다르면 다른 정점이다.
+// → check[x][y][t] 필요
+
+int bfs() {
+	queue<tuple<int, int, int>> q;
+	q.push({ 7,0,0 });
+	check[7][0][0] = true;
 	while (!q.empty()) {
-		int x = q.front().x;
-		int y = q.front().y;
-		int obj = q.front().obj;
+		int x, y, t;
+		tie(x, y, t) = q.front();
 		q.pop();
-		if (x == 0 && y == 7 && obj == 0) {
+		if (x == 0 && y == 7) {
 			return 1;
 		}
-		if (!obj) {	// 사람
-			if (a[x][y] == '#') {
-				continue;
-			}
-			else if (wall) {	// 제자리
-				q.push(node(x, y, 0));
-			}
-			for (int k = 0; k < 8; k++) {
-				int nx = x + dx[k];
-				int ny = y + dy[k];
-				if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8) {
-					if (wall) {	// 아직 벽이 있다면 간 지점이라도 다시 가본다.
-						if (a[nx][ny] == '.') {
-							q.push(node(nx, ny, 0));
-						}
-					}
-					else {	// 벽이 없는 상황이라면 간 지점은 다시 가 볼 필요가 없다.
-						if (a[nx][ny] == '.' && !check[nx][ny]) {
-							check[nx][ny] = true;
-							q.push(node(nx, ny, 0));
-						}
-					}
+		for (int k = 0; k < 9; k++) {
+			int nx = x + dx[k];
+			int ny = y + dy[k];
+			int nt = min(t + 1, 8);
+			if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8) {
+				if (nx - t >= 0 && a[nx - t][ny] == '#') {	// 벽으로 이동한 경우 (불가능)
+					continue;
 				}
-			}
-		}
-		else {	// 벽
-			int nx = x + 1;
-			a[x][y] = '.';
-			if (nx < 8) {
-				a[nx][y] = '#';
-				q.push(node(nx, y, 1));
-			}
-			else {
-				wall--;
+				else if (nx - nt >= 0 && a[nx - nt][ny] == '#') {	// 위에 벽이 있어서, 내가 이동한 후에 벽과 겹치는 경우 (불가능)
+					continue;
+				}
+				else if (!check[nx][ny][nt]) {
+					check[nx][ny][nt] = true;
+					q.push({ nx,ny,nt });
+				}
 			}
 		}
 	}
@@ -72,14 +44,8 @@ bool bfs(int wall) {
 }
 
 int main() {
-	int wall = 0;
 	for (int i = 0; i < 8; i++) {
 		cin >> a[i];
-		for (int j = 0; j < 8; j++) {
-			if (a[i][j] == '#') {
-				wall++;
-			}
-		}
 	}
-	cout << bfs(wall);
+	cout << bfs();
 }
