@@ -7,6 +7,8 @@ vector<pair<int, int>> a;
 // 이전의 선택과 관련 없이 현재 상태에서 최선의 결과를 선택하여 최적의 결과를 낼 수 있다.
 // → 그리디 알고리즘
 
+// 그리디 알고리즘의 대표적인 문제인 '활동 선택' 문제
+
 bool cmp(pair<int, int> x, pair<int, int> y) {
 	if (x.second != y.second) {
 		return x.second < y.second;
