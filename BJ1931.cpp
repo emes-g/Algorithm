@@ -9,6 +9,8 @@ vector<pair<int, int>> a;
 
 // 그리디 알고리즘의 대표적인 문제인 '활동 선택' 문제
 
+// 시간복잡도 : O(nlogn)
+
 bool cmp(pair<int, int> x, pair<int, int> y) {
 	if (x.second != y.second) {
 		return x.second < y.second;
