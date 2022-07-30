@@ -42,12 +42,12 @@ bool bfs(int wall) {
 				int nx = x + dx[k];
 				int ny = y + dy[k];
 				if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8) {
-					if (wall) {
+					if (wall) {	// 아직 벽이 있다면 간 지점이라도 다시 가본다.
 						if (a[nx][ny] == '.') {
 							q.push(node(nx, ny, 0));
 						}
 					}
-					else {
+					else {	// 벽이 없는 상황이라면 간 지점은 다시 가 볼 필요가 없다.
 						if (a[nx][ny] == '.' && !check[nx][ny]) {
 							check[nx][ny] = true;
 							q.push(node(nx, ny, 0));
