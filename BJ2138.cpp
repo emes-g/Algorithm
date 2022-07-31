@@ -5,6 +5,9 @@ using namespace std;
 int n;
 vector<bool> a, b;
 
+// i번 스위치로 (i-1)번 전구를 변경한다.
+// 이 때, 1번 스위치와 n번 전구는 별도로 생각해주어야 한다.
+
 void input() {
 	string str;
 	cin >> str;
@@ -57,11 +60,13 @@ int go(bool first) {
 }
 
 int main() {
+	// 1. input
 	cin >> n;
 	a.assign(n, false);
 	b.assign(n, false);
 	input();
-
+	
+	// 2. solve (greedy)
 	int first[2] = { go(true), go(false) };
 	if (first[0] == -1 && first[1] == -1) {
 		cout << -1;
