@@ -3,7 +3,9 @@
 #include <algorithm>
 using namespace std;
 
-// 현재 담을 수 있는 가방 중에서 가장 비싼 보석을 담아야 한다.
+// 가방 무게가 작은 것부터 시작하여,
+// 현재 담을 수 있는 보석 중에서 가장 비싼 보석을 담아야 한다.
+// → priority queue로 구현해야 한다.
 
 int main() {
 	ios_base::sync_with_stdio(false);
