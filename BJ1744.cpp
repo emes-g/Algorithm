@@ -16,6 +16,7 @@ bool zero;
 // + + : 곱이 더 크다면 O, 아니면 X
 
 int main() {
+	// 1. input
 	int n;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
@@ -31,7 +32,8 @@ int main() {
 			zero = true;
 		}
 	}
-
+	
+	// 2. solve (greedy)
 	int sum = 0;
 	while (!neg.empty()) {
 		if (neg.size() == 1) {
