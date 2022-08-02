@@ -7,6 +7,7 @@ const int MAX = 1000000;
 int a[MAX], idx[MAX];
 
 // 시간복잡도 : O(nlogn)
+// LIS 5와 코드가 동일하므로 해당 파일 참고
 
 int main() {
 	ios_base::sync_with_stdio(false);
