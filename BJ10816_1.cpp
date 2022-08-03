@@ -53,4 +53,4 @@ int main() {
 		int ans = upper_bound(a, num) - lower_bound(a, num);
 		cout << ans << ' ';
 	}
-}
+} 
