@@ -40,4 +40,4 @@ int main() {
 		cin >> num;
 		cout << binary_search(a, num) << ' ';
 	}
-}
+} 
