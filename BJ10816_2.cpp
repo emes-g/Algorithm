@@ -3,36 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-int lower_bound(vector<int>& a, int num) {
-	int l = 0;
-	int r = a.size() - 1;
-	while (l <= r) {
-		int m = (l + r) / 2;
-		if (a[m] >= num) {
-			r = m - 1;
-		}
-		else {
-			l = m + 1;
-		}
-	}
-	return l;
-}
-
-int upper_bound(vector<int>& a, int num) {
-	int l = 0;
-	int r = a.size() - 1;
-	while (l <= r) {
-		int m = (l + r) / 2;
-		if (a[m] <= num) {
-			l = m + 1;
-		}
-		else {
-			r = m - 1;
-		}
-	}
-	return l;
-}
-
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -50,7 +20,7 @@ int main() {
 	for (int i = 0; i < m; i++) {
 		int num;
 		cin >> num;
-		int ans = upper_bound(a, num) - lower_bound(a, num);
+		int ans = upper_bound(a.begin(), a.end(), num) - lower_bound(a.begin(), a.end(), num);
 		cout << ans << ' ';
 	}
 }
