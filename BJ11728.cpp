@@ -2,10 +2,6 @@
 #include <vector>
 using namespace std;
 
-void sort() {
-
-}
-
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
