@@ -17,6 +17,7 @@ void go(int n, int x, int y) {
 		cout << x << ' ' << y << '\n';
 		return;
 	}
+	// 아래 코드에서 inorder 느낌이 난다.
 	go(n - 1, x, 6 - x - y);
 	cout << x << ' ' << y << '\n';
 	go(n - 1, 6 - x - y, y);
