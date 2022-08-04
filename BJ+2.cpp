@@ -6,7 +6,7 @@ int a[n] = { 4,2,3,5,1 };
 
 // quick_sort
 // 시간 복잡도	평균 O(n * logn)
-//				최악	O(n^2)
+//		    최악 O(n^2)
 
 int partition(int start, int end) {
 	int pivotIdx = (start + end) / 2;
