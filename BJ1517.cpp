@@ -10,6 +10,8 @@ long long ans;
 // → 수열의 inversion 개수를 세는 문제
 // → 위치상 앞에 있으면서 값이 더 큰 것의 개수가 몇 개?
 
+// 시간복잡도 : O(nlogn) (∵ merge sort)
+
 void merge(int start, int end) {
 	int mid = (start + end) / 2;
 	int i = start, j = mid + 1, k = 0;
