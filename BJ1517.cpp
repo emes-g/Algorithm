@@ -14,7 +14,7 @@ void merge(int start, int end) {
 	int mid = (start + end) / 2;
 	int i = start, j = mid + 1, k = 0;
 	while (i <= mid && j <= end) {
-		if (a[i] <= a[j]) {
+		if (a[i] <= a[j]) {	// 같을 때도 해당 경우에 포함하여, inversion 횟수가 무분별하게 증가하지 않도록 한다.
 			b[k++] = a[i++];
 		}
 		else {
