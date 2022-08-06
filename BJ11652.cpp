@@ -3,6 +3,8 @@
 #include <algorithm>
 using namespace std;
 
+// 헷갈리지 않는 코드를 작성하자!
+
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
@@ -16,23 +18,19 @@ int main() {
 	}
 	sort(a.begin(), a.end());
 	
-	// 2. output
+	// 2. solve
 	long long ans = a[0], ans_cnt = 1, cnt = 1;
 	for (int i = 1; i < n; i++) {
 		if (a[i] != a[i - 1]) {
-			if (cnt > ans_cnt) {
-				ans_cnt = cnt;
-				ans = a[i - 1];
-			}
 			cnt = 1;
 		}
 		else {
 			cnt++;
 		}
-	}
-	if (cnt > ans_cnt) {
-		ans_cnt = cnt;
-		ans = a[n - 1];
+		if (ans_cnt < cnt) {
+			ans_cnt = cnt;
+			ans = a[i];
+		}
 	}
 	cout << ans;
 }
