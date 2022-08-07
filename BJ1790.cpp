@@ -15,7 +15,6 @@ bool good(int mid) {
 }
 
 int binary_search(int left, int right) {
-	int goal = 7;
 	while (left <= right) {
 		int mid = (left + right) / 2;
 		if (good(mid)) {
