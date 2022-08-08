@@ -8,7 +8,7 @@ vector<vector<int>> a;
 vector<bool> check;
 vector<int> s;
 
-// check path(u,v) by using DFS
+// check all path(u,v) by using DFS
 // DFS를 사용하여 정점 U에서 정점 V까지 가는 모든 경로 탐색
 
 void dfs(int x) {
@@ -51,4 +51,4 @@ int main() {
 		sort(a[i].begin(), a[i].end());
 	}
 	dfs(v);
-}
+} 
