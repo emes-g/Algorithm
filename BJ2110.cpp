@@ -5,6 +5,8 @@ using namespace std;
 int n, c;
 vector<int> a;
 
+// 결정 문제 : 가장 인접한 두 공유기 사이의 거리가 mid여도 되는가?
+
 // 첫 집은 공유기를 무조건 설치하는게 좋다!
 
 bool good(int mid) {
