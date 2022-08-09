@@ -22,8 +22,8 @@ ll dist(ll gap) {
 }
 
 ll ternary_search(int left, int right) {
-	// for(int i=0; i<100; i++)로 구현해도 무방
-	while (right - left >= 3) {
+	// 1. 근사 범위 구하기
+	while (right - left >= 3) {	// for(int i=0; i<100; i++)로 구현해도 무방
 		int m1 = left + (right - left) / 3;
 		int m2 = right - (right - left) / 3;
 		ll d1 = dist(m1);
@@ -35,6 +35,8 @@ ll ternary_search(int left, int right) {
 			left = m1;
 		}
 	}
+	
+	// 2. 브루트 포스로 답 찾기
 	ll ans = dist(right);
 	for (int i = left; i < right; i++) {
 		ans = min(ans, dist(i));
