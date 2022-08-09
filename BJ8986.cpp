@@ -21,11 +21,11 @@ ll dist(ll gap) {
 	return sum;
 }
 
-ll ternary_search(ll left, ll right) {
+ll ternary_search(int left, int right) {
 	// for(int i=0; i<100; i++)로 구현해도 무방
 	while (right - left >= 3) {
-		ll m1 = left + (right - left) / 3;
-		ll m2 = right - (right - left) / 3;
+		int m1 = left + (right - left) / 3;
+		int m2 = right - (right - left) / 3;
 		ll d1 = dist(m1);
 		ll d2 = dist(m2);
 		if (d1 < d2) {
