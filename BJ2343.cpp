@@ -7,7 +7,7 @@ vector<int> a;
 bool good(int mid) {
 	int cnt = 1, sum = 0;
 	for (int i = 0; i < n; i++) {
-		if (a[i] > mid) {	// 불가능한 상황
+		if (a[i] > mid) {	// 현재 블루레이의 크기로는 한 개의 레슨도 담지 못하는 경우
 			return false;
 		}
 		else if (sum + a[i] <= mid) {
