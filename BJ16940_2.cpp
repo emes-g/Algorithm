@@ -7,6 +7,9 @@ vector<vector<int>> a;
 vector<int> order;
 vector<bool> check;
 int n;
+// <문제 파악>
+// 특정한 순서를 기억해서 진행해야 하는 BFS
+
 // input
 // 4
 // 1 2
