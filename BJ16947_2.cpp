@@ -9,9 +9,9 @@ bool check[MAX], finish[MAX];
 int n, p, dist[MAX];
 
 // <알고리즘>
-// 1. 순환선 파악	(cycle detection)
+// 1. 순환선 파악 (cycle detection)
 // → 사이클을 구성하는 정점들을 알아내어, dist값을 0으로 설정한다.
-// 2. 지선 파악 (bfs)
+// 2. 지선 파악   (bfs)
 // → 사이클에 속하는 정점들을 queue에 삽입하여, dist값을 갱신한다.
 
 // 간선의 개수와 정점의 개수가 같은 연결 그래프는 정확히 하나의 사이클만을 갖는다.
