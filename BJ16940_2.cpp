@@ -3,10 +3,10 @@
 #include <queue>
 #include <algorithm>
 using namespace std;
-const int MAX = 100001;
 vector<vector<int>> a;
 vector<int> order;
-bool check[MAX];
+vector<bool> check;
+int n;
 // input
 // 4
 // 1 2
@@ -36,16 +36,15 @@ bool bfs() {
 		int x = q.front();
 		q.pop();
 		for (int next : a[x]) {
-			if (check[next]) {
-				continue;
-			}
-			if (order[next] == idx) {	// 다음에 오는 숫자가 idx번째 자리에 올 숫자가 맞는 경우
-				check[next] = true;
-				q.push(next);
-				idx++;
-			}
-			else {	// 다음에 오는 숫자가 idx번째 자리에 올 숫자가 아닌 경우
-				return false;
+			if (!check[next]) {
+				if (order[next] == idx) {	// 다음에 오는 숫자가 idx번째 자리에 올 숫자가 맞는 경우
+					q.push(next);
+					check[next] = true;
+					idx++;
+				}
+				else {	// 다음에 오는 숫자가 idx번째 자리에 올 숫자가 아닌 경우
+					return false;
+				}
 			}
 		}
 	}
@@ -53,17 +52,19 @@ bool bfs() {
 }
 
 int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
 	// 1. input
-	int n;
 	cin >> n;
-	a.assign(n + 1, vector<int>());
+	a.resize(n + 1);
 	for (int i = 0; i < n - 1; i++) {
 		int from, to;
 		cin >> from >> to;
 		a[from].push_back(to);
 		a[to].push_back(from);
 	}
-	order.assign(n + 1, 0);
+	order.resize(n + 1);
 	for (int i = 1; i <= n; i++) {
 		int x;
 		cin >> x;
@@ -72,9 +73,10 @@ int main() {
 
 	// 2. solve (bfs)
 	for (int i = 1; i <= n; i++) {
-		sort(a[i].begin(), a[i].end(), [](int x, int y) {
+		sort(a[i].begin(), a[i].end(), [](auto x, auto y) {
 			return order[x] < order[y];
 			});
 	}
+	check.resize(n + 1);
 	cout << bfs();
 }
