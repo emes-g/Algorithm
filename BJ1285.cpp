@@ -1,15 +1,16 @@
 #include <iostream>
-#include <cstring>
 using namespace std;
+bool a[20][20], temp[20][20];
 
 // 시간복잡도 : O(2^n * n^2)
 
 int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
 	// 1. input
-	int n;
+	int n, ans = 400;
 	cin >> n;
-	bool a[20][20];
-	memset(a, false, sizeof(a));
 	for (int i = 0; i < n; i++) {
 		string str;
 		cin >> str;
@@ -19,21 +20,19 @@ int main() {
 			}
 		}
 	}
-	
-	// 2. sovle (bitmask & greedy)
-	int ans = n * n;
-	bool temp[20][20];
-	for (int k = 0; k < (1 << n); k++) {	// 뒤집을 행 결정
+
+	// 2. solve (bitmask & greedy)
+	for (int s = 0; s < (1 << n); s++) {	// 뒤집을 행 결정
 		// 1. 원본 copy
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				temp[i][j] = a[i][j];
 			}
 		}
-		
+
 		// 2. 행 뒤집기
 		for (int i = 0; i < n; i++) {
-			if (k & (1 << i)) {
+			if (s & (1 << i)) {
 				for (int j = 0; j < n; j++) {
 					temp[i][j] = !temp[i][j];
 				}
