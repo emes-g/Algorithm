@@ -2,10 +2,12 @@
 #include <queue>
 #include <algorithm>
 using namespace std;
+typedef pair<int, int> pii;
 
 // 가방 무게가 작은 것부터 시작하여,
-// 현재 담을 수 있는 보석 중에서 가장 비싼 보석을 담아야 한다.
+// 현재 담을 수 있는 보석 중에서 가장 비싼 보석을 담아야 한다. (현재 시점에서 최적인 선택)
 // → priority queue로 구현해야 한다.
+// (pq의 기본 정렬 순서는 내림차순)
 
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -14,40 +16,29 @@ int main() {
 	// 1. input
 	int n, k;
 	cin >> n >> k;
-	vector<pair<int, int>> a;	// 보석
+	vector<pii> a(n);	// 보석
+	vector<int> g(k);	// 용량
 	for (int i = 0; i < n; i++) {
-		int m, v;
-		cin >> m >> v;
-		a.push_back({ m,v });
+		cin >> a[i].first >> a[i].second;
 	}
-	vector<int> c(k);	// 용량
 	for (int i = 0; i < k; i++) {
-		cin >> c[i];
+		cin >> g[i];
 	}
-
-	// 2. sort (무게 순 정렬)
-	sort(a.begin(), a.end(), [](auto x, auto y) {
-		if (x.first == y.first) {
-			return x.second < y.second;
-		}
-		else {
-			return x.first < y.first;
-		}
-		});
-	sort(c.begin(), c.end());	
+	sort(a.begin(), a.end());
+	sort(g.begin(), g.end());
 	
-	// 3. solve (greedy)
-	priority_queue<int> pq;	// 현재 가방에 담을 수 있는 보석들을 저장한다.
-	long long idx = 0, res = 0;
+	// 2. solve (greedy)
+	priority_queue<int> pq;	// 현재 가방에 담을 수 있는 보석들
+	long long idx = 0, ans = 0;
 	for (int i = 0; i < k; i++) {
-		while (idx < n && a[idx].first <= c[i]) {
+		while (idx < n && a[idx].first <= g[i]) {
 			pq.push(a[idx++].second);
 		}
 
-		if (!pq.empty()) {	// pq에서 가장 비싼 보석을 담고 지운다.
-			res += pq.top();
+		if (!pq.empty()) {	// 가장 비싼 보석을 담는다.
+			ans += pq.top();
 			pq.pop();
 		}
 	}
-	cout << res;
+	cout << ans;
 }
