@@ -1,2 +1,2 @@
-# algorithm_intermediate02-
+# algorithm_intermediate02
 baekjoon algorithm_intermediate02
