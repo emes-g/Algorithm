@@ -10,7 +10,7 @@ int main() {
 	// 1. input
 	cin >> a >> b >> c >> x >> y;
 
-	// 2. solve
+	// 2. solve (greedy)
 	int temp = min(x, y);
 	x -= temp;
 	y -= temp;
@@ -22,4 +22,4 @@ int main() {
 		ans += min(2 * c, a) * x;
 	}
 	cout << ans << '\n';
-}
+} 
