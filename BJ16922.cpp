@@ -1,31 +1,30 @@
 #include <iostream>
-#include <set>
 using namespace std;
+bool check[1001];
 int n, ans;
-set<int> s;
-bool check[21][21][21][21];
+int a[4] = { 1,5,10,50 };
 
-void go(int level, int i, int v, int x, int l, int sum) {
-	if (check[i][v][x][l]) {
-		return;
-	}
-	else if (level == n) {
-		check[i][v][x][l] = true;
-		if (s.find(sum) == s.end()) {
-			s.insert(sum);
+// <문제 파악>
+// 순서가 중요하지 않은 선택 문제
+// (단, 같은 것을 선택할 수도 있다는 점에 유념)
+
+// 유사 : N과 M(8) (15657)
+
+void go(int level, int index, int sum) {
+	if (level == n) {
+		if (!check[sum]) {
+			check[sum] = true;
 			ans++;
 		}
 		return;
 	}
-	check[i][v][x][l] = true;
-	go(level + 1, i + 1, v, x, l, sum + 1);
-	go(level + 1, i, v + 1, x, l, sum + 5);
-	go(level + 1, i, v, x + 1, l, sum + 10);
-	go(level + 1, i, v, x, l + 1, sum + 50);
+	for (int i = index; i < 4; i++) {
+		go(level + 1, i, sum + a[i]);
+	}
 }
 
 int main() {
 	cin >> n;
-	go(0, 0, 0, 0, 0, 0);
+	go(0, 0, 0);
 	cout << ans;
 }
