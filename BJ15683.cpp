@@ -15,7 +15,7 @@ vector<t> cctv;
 // 매 level마다 만들어 놓은 cur을 통해 현재 사무실을 기억해 놓는 것이 중요하다. 
 // → 복사 생성자를 이용한 deep copy
 
-void observe(int x, int y, int dir, vector<vector<int>>& temp) {
+void observe(int x, int y, int dir, vector<vector<int>>& temp) {	// 해당 방향 감시
 	int nx = x;
 	int ny = y;
 	while (true) {
