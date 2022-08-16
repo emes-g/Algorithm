@@ -46,11 +46,11 @@ int main() {
 	}
 
 	// 2. solve (bitmask)
-	for (int i = 0; i < (1 << m); i++) {
+	for (int s = 0; s < (1 << m); s++) {
 		// 1. 중첩된 괄호 존재 여부 확인
 		bool good = true;
-		for (int j = 0; j < m - 1; j++) {
-			if ((i & (1 << j)) && (i & (1 << (j + 1)))) {
+		for (int i = 0; i < m - 1; i++) {
+			if ((s & (1 << i)) && (s & (1 << (i + 1)))) {
 				good = false;
 				break;
 			}
@@ -63,9 +63,9 @@ int main() {
 		vector<int> num2;
 		vector<char> op2;
 		num2.push_back(num.front());
-		for (int j = m - 1; j >= 0; j--) {
-			int idx = (m - 1) - j;
-			if (i & (1 << j)) {
+		for (int i = m - 1; i >= 0; i--) {
+			int idx = (m - 1) - i;
+			if (s & (1 << i)) {
 				int temp = calc(num2.back(), num[idx + 1], op[idx]);
 				num2.pop_back();
 				num2.push_back(temp);
@@ -81,22 +81,22 @@ int main() {
 		vector<int> num3;
 		vector<char> op3;
 		num3.push_back(num2.front());
-		for (int j = 0; j < op2.size(); j++) {
-			if (op2[j] == '*') {
-				int temp = calc(num3.back(), num2[j + 1], op2[j]);
+		for (int i = 0; i < op2.size(); i++) {
+			if (op2[i] == '*') {
+				int temp = calc(num3.back(), num2[i + 1], op2[i]);
 				num3.pop_back();
 				num3.push_back(temp);
 			}
 			else {
-				num3.push_back(num2[j + 1]);
-				op3.push_back(op2[j]);
+				num3.push_back(num2[i + 1]);
+				op3.push_back(op2[i]);
 			}
 		}
 
 		// 4. 차례대로 계산
 		int res = num3.front();
-		for (int j = 0; j < op3.size(); j++) {
-			res = calc(res, num3[j + 1], op3[j]);
+		for (int i = 0; i < op3.size(); i++) {
+			res = calc(res, num3[i + 1], op3[i]);
 		}
 		ans = max(ans, res);
 	}
