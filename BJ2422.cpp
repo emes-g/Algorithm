@@ -6,6 +6,7 @@ const int MAX = 201;
 bool a[MAX][MAX];
 
 // 시간복잡도 : O(n^3)
+// 유사 문제 : 세 친구 (17089)
 
 int main() {
 	ios_base::sync_with_stdio(false);
