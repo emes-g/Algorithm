@@ -7,7 +7,7 @@ int a[n] = { 4,2,5,1,3 }, b[n];
 // 시간 복잡도 : O(n * logn)
 // ∴ 합병 → logn * O(n)
 
-void merge(int start, int end) {
+void merge(int start, int end) {	// 기저 : two pointer
 	int mid = (start + end) / 2;
 	int i = start, j = mid + 1, k = 0;
 	while (i <= mid && j <= end) {
