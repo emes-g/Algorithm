@@ -33,4 +33,4 @@ int main() {
 		sum -= a[l++];
 	}
 	cout << ans;
-}
+} 
