@@ -31,10 +31,6 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			x.push_back(a[i] + b[j]);
-		}
-	}
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
 			y.push_back(c[i] + d[j]);
 		}
 	}
