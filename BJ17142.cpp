@@ -42,7 +42,6 @@ int bfs() {
 	for (int i = 0; i < m; i++) {	// 상태 복구
 		int x, y;
 		tie(x, y) = virus[active[i]];
-		q.push({ x,y });
 		a[x][y] = 2;
 	}
 
