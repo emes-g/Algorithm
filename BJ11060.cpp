@@ -26,11 +26,16 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 	
+	// 1. input
 	int n;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
+	
+	// 2. solve
 	bfs();
+	
+	// 3. output
 	cout << (d[n - 1] == MAX ? -1 : d[n - 1]);
 }
